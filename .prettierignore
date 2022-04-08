@@ -1,1 +1,3 @@
-/src/pages/api/subscribe.ts
+/src/pages/api/*/*.ts
+# /src/pages/api/_lib/*.ts
+# /src/pages/api/auth/*.ts

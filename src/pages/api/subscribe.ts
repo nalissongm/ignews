@@ -9,7 +9,7 @@ type User = {
     id: string;
   };
   data: {
-    stripe_custumer_id: string;
+    stripe_customer_id: string;
   }
 };
 
@@ -26,10 +26,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       ),
     );
 
-    let customerId = user.data.stripe_custumer_id;
+    let customerId = user.data.stripe_customer_id;
 
     if(!customerId){
-      const stripeCustumer = await stripe.customers.create({
+      const stripeCustomer = await stripe.customers.create({
         email: session.user.email,
         // metadata:
       });
@@ -38,13 +38,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         q.Update(
           q.Ref(q.Collection("users"), user.ref.id), {
             data: {
-              stripe_custumer_id: stripeCustumer.id,
+              stripe_customer_id: stripeCustomer.id,
             },
           }
         ),
       );
 
-      customerId = stripeCustumer.id;
+      customerId = stripeCustomer.id;
     }
 
     const stripeCheckoutSession = await stripe.checkout.sessions.create({

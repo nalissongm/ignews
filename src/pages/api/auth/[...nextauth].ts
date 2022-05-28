@@ -5,6 +5,8 @@ import GithubProvider from "next-auth/providers/github";
 
 import { fauna } from "../../../services/fauna";
 
+console.log(process.env.GITHUB_CLIENT_ID, process.env.GITHUB_CLIENT_SECRET);
+
 export default NextAuth({
   providers: [
     GithubProvider({
@@ -69,9 +71,10 @@ export default NextAuth({
 
         return true;
       } catch (err) {
-        console.log(JSON.stringify(err, null, 2));
+        console.log(err);
         return false;
       }
     },
   },
+  secret: process.env.JWT_SECRET
 });

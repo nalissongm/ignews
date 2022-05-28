@@ -44,7 +44,6 @@ export async function saveSubscription(
       )
     );
   }else {
-    console.log(subscription.id);
     await fauna.query(
       q.Replace(
         q.Select(

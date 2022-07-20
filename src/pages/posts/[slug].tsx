@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   if (!session?.activeSubscription) {
     return {
       redirect: {
-        destination: `/posts/preview/${slug}`,
+        destination: `/`,
         permanent: false,
       },
     };
@@ -66,7 +66,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         day: "2-digit",
         month: "long",
         year: "numeric",
-      },
+      }
     ),
   };
 
